@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Un frasco digital lleno de notas bonitas y detalles suaves para Salomen.">
+  <meta name="theme-color" content="#f6d6df">
+  <meta property="og:title" content="El Frasco de Notas · Para Salomen">
+  <meta property="og:description" content="Toca el frasco y descubre una nota especial para tu día.">
+  <meta property="og:type" content="website">
+  <title>El Frasco de Notas · Para Salomen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Cursor trail container (desktop only) -->
+  <div class="cursor-trail-container" id="cursorTrailContainer" aria-hidden="true"></div>
+
+  <!-- Click/Tap Heart burst container -->
+  <div class="burst-container" id="burstContainer" aria-hidden="true"></div>
+
+  <div class="bg-layer" aria-hidden="true" data-parallax-layer="bg">
+    <div class="bg-layer__gradient"></div>
+    <div class="bg-layer__glow bg-layer__glow--left"></div>
+    <div class="bg-layer__glow bg-layer__glow--right"></div>
+    <div class="bg-layer__glow bg-layer__glow--center"></div>
+    <div class="confetti-field" id="confettiField" data-parallax-layer="confetti"></div>
+  </div>
+
+  <div class="app">
+    <header class="top-bar unrevealed" data-reveal-delay="0">
+      <button type="button" class="top-bar__btn" aria-label="Inicio" id="homeBtn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M3 10.5L12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-9.5z"/>
+        </svg>
+      </button>
+
+      <div class="top-bar__actions">
+        <!-- Sound Toggle Button -->
+        <button type="button" class="top-bar__btn" aria-label="Sonido (desactivado)" id="soundToggleBtn" aria-pressed="false">
+          <svg class="sound-icon sound-icon--off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+            <line x1="23" y1="9" x2="17" y2="15"/>
+            <line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+          <svg class="sound-icon sound-icon--on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          </svg>
+        </button>
+
+        <button type="button" class="top-bar__btn" aria-label="Menú">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Jar Switcher Component (Premium Glassmorphic Pill) -->
+    <div class="jar-switcher unrevealed" id="jarSwitcher" data-reveal-delay="100">
+      <div class="jar-switcher__background"></div>
+      <button type="button" class="switcher-btn active" data-jar="frases">
+        <span class="switcher-btn__emoji">✨</span>
+        <span class="switcher-btn__text">Frases</span>
+      </button>
+      <button type="button" class="switcher-btn" data-jar="cupones">
+        <span class="switcher-btn__emoji">🎟️</span>
+        <span class="switcher-btn__text">Cupones</span>
+      </button>
+    </div>
+
+    <section class="hero">
+      <p class="hero__eyebrow unrevealed" data-reveal-delay="200">Un rincón guardado para ti</p>
+      <h1 class="hero__title unrevealed" data-reveal-delay="400" data-text="Toca para descubrir una nota especial en tu día ✨">Toca para descubrir una nota especial en tu día <span aria-hidden="true">✨</span></h1>
+
+      <!-- Decorative SVG separator -->
+      <div class="hero-separator unrevealed" data-reveal-delay="550" aria-hidden="true">
+        <svg class="hero-separator__svg" viewBox="0 0 200 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="hero-separator__line hero-separator__line--left" d="M10 12 Q50 12 90 12" stroke="url(#sepGrad)" stroke-width="1.2" stroke-linecap="round"/>
+          <path class="hero-separator__line hero-separator__line--right" d="M110 12 Q150 12 190 12" stroke="url(#sepGrad)" stroke-width="1.2" stroke-linecap="round"/>
+          <g class="hero-separator__star" transform="translate(100, 12)">
+            <path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z" fill="url(#starGrad)"/>
+          </g>
+          <defs>
+            <linearGradient id="sepGrad" x1="0" y1="0" x2="200" y2="0">
+              <stop offset="0%" stop-color="#ea7ca3" stop-opacity="0.15"/>
+              <stop offset="50%" stop-color="#d65284" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#af95ff" stop-opacity="0.15"/>
+            </linearGradient>
+            <linearGradient id="starGrad" x1="0" y1="-5" x2="0" y2="5">
+              <stop offset="0%" stop-color="#ea7ca3"/>
+              <stop offset="100%" stop-color="#af95ff"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <p class="hero__copy unrevealed" data-reveal-delay="700">Cada papelito guarda algo bonito sobre ti o una palabra suave que quería dejarte cerquita del corazón.</p>
+    </section>
+
+    <main class="main">
+      <section class="jar-section" aria-label="Frasco de notas">
+        <div class="jar-scene">
+          <!-- Sparkle particles around the jar -->
+          <div class="sparkle-field" id="sparkleField" aria-hidden="true"></div>
+
+          <div class="jar-wrapper unrevealed" data-reveal-delay="900" id="jarWrapper" role="button" tabindex="0" aria-label="Sacudir el frasco para sacar una nota" data-parallax-layer="jar">
+            <div class="jar-shadow" aria-hidden="true"></div>
+            <div class="jar-pedestal" aria-hidden="true"></div>
+
+            <div class="jar-float">
+              <div class="jar-3d">
+
+                <!-- 🐱 GATITO GUARDIÁN (KAWAII BLACK & WHITE MANCHADO SVG TOPPER) -->
+                <div class="cat-topper" id="catTopper" aria-hidden="true">
+                  <svg class="cat-svg" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="catBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="100%" stop-color="#f5f0f3"/>
+                      </linearGradient>
+                      <linearGradient id="catEarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#ffb6cb"/>
+                        <stop offset="100%" stop-color="#ea7ca3"/>
+                      </linearGradient>
+                      <linearGradient id="crownGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ffe680"/>
+                        <stop offset="100%" stop-color="#e6b800"/>
+                      </linearGradient>
+                      <linearGradient id="heldHeartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ff6699"/>
+                        <stop offset="100%" stop-color="#d6336c"/>
+                      </linearGradient>
+                    </defs>
+
+                    <!-- Fluffy Spiky Black & White Tail (Matching user reference image style) -->
+                    <g id="catTail" class="cat-tail">
+                      <!-- Spiky fluffy tail outline -->
+                      <path d="M120 74 C126 68 136 72 134 60 C144 64 142 50 152 52 C146 38 156 38 144 24 C148 18 134 10 126 18 C118 12 112 24 114 36 C110 46 118 56 110 66 Z" fill="url(#catBodyGrad)" stroke="#2b2b36" stroke-width="2" stroke-linejoin="miter"/>
+                      <!-- Spiky Black Fur Ring Stripes -->
+                      <path d="M126 18 L136 22 L144 24 L138 32 L126 28 Z" fill="#2b2b36"/>
+                      <path d="M124 38 L142 42 L152 52 L138 54 L120 48 Z" fill="#2b2b36"/>
+                      <path d="M118 58 L136 62 L134 72 L120 68 Z" fill="#2b2b36"/>
+                    </g>
+
+                    <!-- Cat Body & Paws resting on jar rim -->
+                    <g id="catBody" class="cat-body">
+                      <!-- Little Chest/Shoulders -->
+                      <ellipse cx="80" cy="72" rx="34" ry="22" fill="url(#catBodyGrad)" stroke="#2b2b36" stroke-width="2"/>
+                      <!-- Black Body Patches (Manchitas en la espalda y pecho) -->
+                      <path d="M52 64 C56 54 70 56 65 74 C58 78 48 72 52 64 Z" fill="#2b2b36"/>
+                      <path d="M96 66 C102 58 112 62 108 74 C102 78 94 72 96 66 Z" fill="#2b2b36"/>
+                    </g>
+
+                    <!-- Cat Head Group (Follows Cursor & Tilts) -->
+                    <g id="catHead" class="cat-head">
+                      <!-- Left Ear (Black Patch / Orejita Negra) -->
+                      <g class="cat-ear cat-ear--left">
+                        <path d="M42 42 L24 12 Q38 16 54 32 Z" fill="#2b2b36" stroke="#2b2b36" stroke-width="2"/>
+                        <path d="M43 38 L30 18 Q39 21 50 31 Z" fill="url(#catEarGrad)"/>
+                      </g>
+
+                      <!-- Right Ear (Manchada / Black top tip) -->
+                      <g class="cat-ear cat-ear--right">
+                        <path d="M118 42 L136 12 Q122 16 106 32 Z" fill="url(#catBodyGrad)" stroke="#2b2b36" stroke-width="2"/>
+                        <path d="M128 24 L136 12 Q130 14 122 22 Z" fill="#2b2b36"/>
+                        <path d="M117 38 L130 18 Q121 21 110 31 Z" fill="url(#catEarGrad)"/>
+                      </g>
+
+                      <!-- Head Base -->
+                      <ellipse cx="80" cy="46" rx="42" ry="32" fill="url(#catBodyGrad)" stroke="#2b2b36" stroke-width="2"/>
+
+                      <!-- Black Spot Patches (Manchita ojo izquierdo + manchita mejilla derecha) -->
+                      <path d="M38 34 C44 20 64 22 66 38 C68 50 50 56 38 46 C34 40 36 36 38 34 Z" fill="#2b2b36"/>
+                      <path d="M106 34 C116 30 122 42 114 52 C108 54 104 42 106 34 Z" fill="#2b2b36"/>
+
+                      <!-- Cheeks Blush -->
+                      <ellipse cx="54" cy="53" rx="7" ry="4.5" fill="#ffaec9" opacity="0.85" class="cat-blush"/>
+                      <ellipse cx="106" cy="53" rx="7" ry="4.5" fill="#ffaec9" opacity="0.85" class="cat-blush"/>
+
+                      <!-- Left Eye Group -->
+                      <g class="cat-eye-container">
+                        <!-- Open Eye Base -->
+                        <ellipse cx="58" cy="44" rx="7.5" ry="9.5" fill="#1a1824" class="cat-eye-open"/>
+                        <!-- Left Pupil (Moves with Cursor) -->
+                        <circle id="pupilLeft" cx="58" cy="44" r="4" fill="#ffffff" class="cat-eye-pupil"/>
+                        <circle cx="60" cy="42" r="1.8" fill="#ffffff" class="cat-eye-shine"/>
+
+                        <!-- Heart Eye Mode (Proportional & Narrow cute heart eyes) -->
+                        <g class="cat-eye-heart-group" style="display:none;">
+                          <path d="M58 48.5 C55 44.5 50.5 44 50.5 40 C50.5 37 53 35 55.5 36.5 C56.8 37.2 57.5 38.2 58 38.8 C58.5 38.2 59.2 37.2 60.5 36.5 C63 35 65.5 37 65.5 40 C65.5 44 61 44.5 58 48.5 Z" fill="#ff3366"/>
+                          <circle cx="55.5" cy="38" r="1" fill="#ffffff"/>
+                        </g>
+
+                        <!-- Squeezed Happy Eye (Shown on tap/happy) -->
+                        <path d="M51 44 Q58 37 65 44" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none" class="cat-eye-happy" style="display:none;"/>
+                      </g>
+
+                      <!-- Right Eye Group -->
+                      <g class="cat-eye-container">
+                        <!-- Open Eye Base -->
+                        <ellipse cx="102" cy="44" rx="7.5" ry="9.5" fill="#1a1824" class="cat-eye-open"/>
+                        <!-- Right Pupil (Moves with Cursor) -->
+                        <circle id="pupilRight" cx="102" cy="44" r="4" fill="#ffffff" class="cat-eye-pupil"/>
+                        <circle cx="104" cy="42" r="1.8" fill="#ffffff" class="cat-eye-shine"/>
+
+                        <!-- Heart Eye Mode -->
+                        <g class="cat-eye-heart-group" style="display:none;">
+                          <path d="M102 48.5 C99 44.5 94.5 44 94.5 40 C94.5 37 97 35 99.5 36.5 C100.8 37.2 101.5 38.2 102 38.8 C102.5 38.2 103.2 37.2 104.5 36.5 C107 35 109.5 37 109.5 40 C109.5 44 105 44.5 102 48.5 Z" fill="#ff3366"/>
+                          <circle cx="99.5" cy="38" r="1" fill="#ffffff"/>
+                        </g>
+
+                        <!-- Squeezed Happy Eye -->
+                        <path d="M95 44 Q102 37 109 44" stroke="#1a1824" stroke-width="3" stroke-linecap="round" fill="none" class="cat-eye-happy" style="display:none;"/>
+                      </g>
+
+                      <!-- Nose & Mouth -->
+                      <polygon points="78,49 82,49 80,52" fill="#ea7ca3"/>
+                      <path d="M75 54 Q80 57 80 53 Q80 57 85 54" stroke="#2b2b36" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+                      <!-- Whiskers -->
+                      <path d="M38 48 L22 45 M38 52 L20 53" stroke="#2b2b36" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+                      <path d="M122 48 L138 45 M122 52 L140 53" stroke="#2b2b36" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+
+                      <!-- 👑 Accessory: Star Crown (Active in "lo-bonito-de-ti") -->
+                      <g id="catCrown" class="cat-accessory cat-accessory--crown" transform="translate(80, 16)">
+                        <path d="M-12 6 L-16 -8 L-6 -2 L0 -14 L6 -2 L16 -8 L12 6 Z" fill="url(#crownGrad)" stroke="#cc9900" stroke-width="1"/>
+                        <circle cx="0" cy="-14" r="2.5" fill="#ffffff"/>
+                        <circle cx="-16" cy="-8" r="2" fill="#ea7ca3"/>
+                        <circle cx="16" cy="-8" r="2" fill="#af95ff"/>
+                      </g>
+
+                      <!-- 💖 Accessory: Cute Heart held directly IN paws (Active in "palabras-para-ti") -->
+                      <g id="catHeartHeld" class="cat-accessory cat-accessory--heart" transform="translate(80, 77)" style="display:none;">
+                        <path d="M0 10 C-9 2 -17 2 -17 -6 C-17 -13 -11 -16 -5 -13 C-2 -12 -1 -9 0 -8 C1 -9 2 -12 5 -13 C11 -16 17 -13 17 -6 C17 2 9 10 0 10 Z" fill="url(#heldHeartGrad)" stroke="#d6336c" stroke-width="1.5"/>
+                        <circle cx="-4" cy="-9" r="1.5" fill="#ffffff" opacity="0.8"/>
+                      </g>
+                    </g>
+
+                    <!-- Cute Paws Resting on Jar Rim -->
+                    <g id="catPaws" class="cat-paws">
+                      <ellipse cx="60" cy="78" rx="8.5" ry="6" fill="url(#catBodyGrad)" stroke="#2b2b36" stroke-width="2"/>
+                      <ellipse cx="100" cy="78" rx="8.5" ry="6" fill="url(#catBodyGrad)" stroke="#2b2b36" stroke-width="2"/>
+                      <!-- Paw Pad Details -->
+                      <line x1="58" y1="80" x2="58" y2="82" stroke="#ea7ca3" stroke-width="1.5" stroke-linecap="round"/>
+                      <line x1="62" y1="80" x2="62" y2="82" stroke="#ea7ca3" stroke-width="1.5" stroke-linecap="round"/>
+                      <line x1="98" y1="80" x2="98" y2="82" stroke="#ea7ca3" stroke-width="1.5" stroke-linecap="round"/>
+                      <line x1="102" y1="80" x2="102" y2="82" stroke="#ea7ca3" stroke-width="1.5" stroke-linecap="round"/>
+                    </g>
+                  </svg>
+                </div>
+                <!-- End Gatito Guardián -->
+
+                <div class="jar-lid" aria-hidden="true">
+                  <div class="jar-lid__top-glow"></div>
+                  <div class="jar-lid__cap"></div>
+                  <div class="jar-lid__thread"></div>
+                  <div class="jar-lid__rim"></div>
+                </div>
+
+                <div class="jar-neck" aria-hidden="true">
+                  <div class="jar-neck__glass"></div>
+                  <div class="jar-twine"></div>
+                  <div class="jar-charm">
+                    <span class="jar-charm__ring"></span>
+                    <span class="jar-charm__heart"></span>
+                  </div>
+                </div>
+
+                <div class="jar-glass">
+                  <div class="jar-glass__edge jar-glass__edge--left"></div>
+                  <div class="jar-glass__edge jar-glass__edge--right"></div>
+                  <div class="jar-glass__edge jar-glass__edge--base"></div>
+                  <div class="jar-glass__halo"></div>
+                  <div class="jar-glass__refraction"></div>
+                  <div class="jar-glass__shine jar-glass__shine--main"></div>
+                  <div class="jar-glass__shine jar-glass__shine--secondary"></div>
+                  <div class="jar-glass__shine jar-glass__shine--rim"></div>
+                  <div class="jar-glass__floor"></div>
+
+                  <!-- Jar Interior: Dense 💖 hearts + ✨ golden sparkles as in screenshot -->
+                  <div class="jar-contents" id="jarContents" aria-hidden="true">
+                  </div>
+
+                  <div class="jar-label-card" aria-hidden="true">
+                    <div class="jar-label-card__frame"></div>
+                    <p class="jar-label-card__title">EL FRASCO DE<br><strong>Salomen</strong> <span class="jar-label-card__heart">❤</span></p>
+                    <p class="jar-label-card__sub">Abierto para ti siempre,<br>mi cielo bonito.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="jar-category-hint unrevealed" data-reveal-delay="1300" id="jarLabel"><span class="jar-category-hint__dot"></span> ✨ Lo Bonito de Ti</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="category-nav unrevealed" data-reveal-delay="1600" aria-label="Categorías de notas">
+    <div class="category-nav__grid">
+      <div class="category-nav__indicator" id="categoryIndicator" aria-hidden="true"></div>
+      <button type="button" class="category-btn" data-categoria="lo-bonito-de-ti" aria-pressed="true">
+        <span class="category-btn__emoji" aria-hidden="true">✨</span>
+        <span class="category-btn__text">Lo Bonito de Ti</span>
+      </button>
+      <button type="button" class="category-btn" data-categoria="palabras-para-ti" aria-pressed="false">
+        <span class="category-btn__emoji" aria-hidden="true">💗</span>
+        <span class="category-btn__text">Palabras para Ti</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="modal" id="noteModal" role="dialog" aria-modal="true" aria-labelledby="modalChip" aria-hidden="true">
+    <div class="modal__backdrop" id="modalBackdrop"></div>
+    <article class="modal__card" id="modalCard">
+      <span class="modal__chip" id="modalChip">Una Razón</span>
+      <p class="modal__text" id="modalText"></p>
+      <button type="button" class="modal__btn" id="modalCloseBtn">Guardar nota</button>
+    </article>
+  </div>
+
+  <!-- GSAP for smooth tracking and entrance timeline -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="js/notas.js"></script>
+  <script src="js/cupones.js"></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
