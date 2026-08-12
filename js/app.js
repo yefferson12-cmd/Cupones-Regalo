@@ -29,13 +29,13 @@ const JAR_CONFIGS = {
     description: "¡Aquí tienes cupones especiales para canjear cuando quieras! Elige una categoría y saca un cupón. ✨",
     labelTitle: "CUPONES DE<br><strong>Salome</strong> <span class=\"jar-label-card__heart\">🎟️</span>",
     labelSub: "Canjéalos con amor,<br>cuando quieras mi vida.",
-    defaultCategory: "vales-amor",
+    defaultCategory: "Cupones-amor",
     categories: [
-      { id: "vales-amor", emoji: "🎟️", text: "Vales de Amor" },
+      { id: "Cupones-amor", emoji: "🎟️", text: "Vales de Amor" },
       { id: "momentos-especiales", emoji: "💖", text: "Momentos Especiales" }
     ],
     labels: {
-      'vales-amor': '🎟️ Vales de Amor',
+      'Cupones-amor': '🎟️ Vales de Amor',
       'momentos-especiales': '💖 Momentos Especiales'
     }
   }
