@@ -10,9 +10,9 @@
 
 const JAR_CONFIGS = {
   frases: {
-    title: "El Frasco de Notas · Para Salomen",
-    description: "Cada papelito guarda algo bonito sobre ti o una palabra suave que quería dejarte cerquita del corazón.",
-    labelTitle: "EL FRASCO DE<br><strong>Salomen</strong> <span class=\"jar-label-card__heart\">❤</span>",
+    title: "El Frasco de Notas · Para Salome",
+    description: "Cada corazoncito guarda algo bonito sobre ti o una palabra suave que quería dejarte cerquita del corazón.",
+    labelTitle: "EL FRASCO DE<br><strong>Salome</strong> <span class=\"jar-label-card__heart\">❤</span>",
     labelSub: "Abierto para ti siempre,<br>mi cielo bonito.",
     defaultCategory: "lo-bonito-de-ti",
     categories: [
@@ -25,9 +25,9 @@ const JAR_CONFIGS = {
     }
   },
   cupones: {
-    title: "Tus Cupones de Amor · Salomen",
-    description: "¡Aquí tienes vales y cupones especiales para canjear cuando quieras! Elige una categoría y saca un cupón. ✨",
-    labelTitle: "CUPONES DE<br><strong>Salomen</strong> <span class=\"jar-label-card__heart\">🎟️</span>",
+    title: "Tus Cupones de Amor · Salome",
+    description: "¡Aquí tienes cupones especiales para canjear cuando quieras! Elige una categoría y saca un cupón. ✨",
+    labelTitle: "CUPONES DE<br><strong>Salome</strong> <span class=\"jar-label-card__heart\">🎟️</span>",
     labelSub: "Canjéalos con amor,<br>cuando quieras mi vida.",
     defaultCategory: "vales-amor",
     categories: [
@@ -160,13 +160,13 @@ function getNotasPorCategoria(categoria) {
   return pool.filter(n => n.categoria === categoria);
 }
 
-function elegirNotaAleatoria(categoria, excluirId) {
+const elegirNotaAleatoria = (categoria, excluirId) => {
   const pool = getNotasPorCategoria(categoria);
   if (pool.length === 0) return null;
   let candidatas = pool.filter(n => n.id !== excluirId);
   if (candidatas.length === 0) candidatas = pool;
   return candidatas[Math.floor(Math.random() * candidatas.length)];
-}
+};
 
 function setJarDisabled(disabled) {
   jarWrapper.classList.toggle('jar-wrapper--disabled', disabled);
@@ -237,7 +237,7 @@ function abrirNota(nota) {
   modalCloseBtn.focus();
 }
 
-function cerrarNota() {
+const cerrarNota = () => {
   if (!state.modalAbierto) return;
 
   if (state.notaActual) {
@@ -265,7 +265,7 @@ function cerrarNota() {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     setTimeout(onEnd, reducedMotion ? 150 : 280);
   }, 180);
-}
+};
 
 // ═══════════════════════════════════════════════
 // TAP / CLICK HEART BURST
